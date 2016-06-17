@@ -16,7 +16,7 @@ RUN apt-get update && \
 		libgl1-mesa-dri:i386 \
 		libgl1-mesa-glx:i386 \
 		libc6:i386 \
-		fglrx-driver
+		amdgpu-pro
 
 # steam itself needs to be able to install things, and it uses "sudo" for that
 RUN apt-get install -yq sudo
