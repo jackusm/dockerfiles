@@ -14,7 +14,9 @@ RUN echo 'deb [arch=amd64,i386] http://repo.steampowered.com/steam precise steam
 RUN apt-get update && \
 	apt-get install -yq \
 		libc6:i386 \
-		amdgpu-pro-dkms
+		libgl1-mesa-dri:i386 \
+		libgl1-mesa-glx:i386 \
+		fglrx-driver
 
 # steam itself needs to be able to install things, and it uses "sudo" for that
 RUN apt-get install -yq sudo
