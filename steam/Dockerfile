@@ -1,3 +1,7 @@
+# Run steam in a container
+#
+# docker run -d --name=steam -v /tmp/.X11-unix:/tmp/.X11-unix -v /dev/shm:/dev/shm -v /run/user/1000/pulse:/run/user/1000/pulse -v /etc/machine-id:/etc/machine-id -v $HOME/Downloads:/tmp/Downloads -v $HOME/.local/share/Steam:/home/steam/.local/share/Steam -e DISPLAY=unix$DISPLAY steam
+#
 FROM tianon/steamos
 
 RUN apt-get update && apt-get install -y steam-launcher zenity && rm -rf /var/lib/apt/lists/*
