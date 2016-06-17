@@ -13,8 +13,6 @@ RUN echo 'deb [arch=amd64,i386] http://repo.steampowered.com/steam precise steam
 # let's head off a few of the things steam will want to install immediately
 RUN apt-get update && \
 	apt-get install -yq \
-		libgl1-mesa-dri:i386 \
-		libgl1-mesa-glx:i386 \
 		libc6:i386 \
 		amdgpu-pro
 
