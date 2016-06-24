@@ -1,4 +1,5 @@
 FROM  debian:jessie
+MAINTAINER Jack Meredith <jackusm95@gmail.com>
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV HOME /var/lib/tor

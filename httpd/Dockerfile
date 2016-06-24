@@ -1,5 +1,5 @@
 FROM centos:latest
-MAINTAINER github.com/blindly
+MAINTAINER Jack Meredith <jackusm95@gmail.com>
 
 # Install HTTPD
 RUN yum install httpd mod_ssl php* -y
