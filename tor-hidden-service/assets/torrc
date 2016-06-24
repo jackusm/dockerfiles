@@ -1,8 +1,10 @@
 {% for container in containers %}
 HiddenServiceDir /var/lib/tor/hidden_service/{{container.names[0]}}
 {% for link in container.links %}
-{% if link.port == 80 and link.protocol == 'tcp' %}
-HiddenServicePort 80 {{link.ip}}:80
+{% set port = env['PORT_MAP'] if 'PORT_MAP' in env else link.port %}
+{% if link.protocol == 'tcp' %}
+# PORT {{container.names[0]}} {{port}}
+HiddenServicePort {{port}} {{link.ip}}:{{link.port}}
 {% endif %}
 {% endfor %}
 {% endfor %}

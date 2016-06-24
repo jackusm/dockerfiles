@@ -7,7 +7,7 @@ Create a tor hidden service with a link
 $ docker run -d --name hello_world tutum/hello_world
 
 # and just link it to this container
-$ docker run -ti --link hello_world jackus/tor-hidden-service
+$ docker run -ti --link hello_world goldy/tor-hidden-service
 ```
 
 The .onion URLs are displayed to stdout at startup.
@@ -15,7 +15,7 @@ The .onion URLs are displayed to stdout at startup.
 To keep onion keys, just mount volume `/var/lib/tor/hidden_service/`
 
 ```sh
-$ docker run -ti --link something --volume /path/to/keys:/var/lib/tor/hidden_service/ jackus/tor-hidden-service
+$ docker run -ti --link something --volume /path/to/keys:/var/lib/tor/hidden_service/ goldy/tor-hidden-service
 ```
 
 Look at the `docker-compose.yml` file to see how to use it.
@@ -46,4 +46,4 @@ $ docker exec -ti torhiddenproxy_tor_1 onions --json
 
 This container is using [`pyentrypoint`](https://github.com/cmehay/pyentrypoint) to generate its setup.
 
-If you need to use the legacy version, please checkout the `legacy` branch or pull `jackus/tor-hidden-service:legacy`.
+If you need to use the legacy version, please checkout the `legacy` branch or pull `goldy/tor-hidden-service:legacy`.
