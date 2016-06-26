@@ -1,4 +1,4 @@
-FROM jackus/archlinux
+FROM logankoester/archlinux
 MAINTAINER Jack Meredith <jackusm95@gmail.com>
 
 RUN pacaur -S bitlbee bitlbee-otr bitlbee-libpurple bitlbee-facebook bitlbee-steam bitlbee-discord-git
