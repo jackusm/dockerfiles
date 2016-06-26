@@ -1,0 +1,16 @@
+[Unit]
+Description=Bitlbee
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStartPre=/bin/sh -c "docker inspect bitlbee >/dev/null 2>&1 && docker rm -f bitlbee || true"
+ExecStartPre=/usr/bin/docker create --name bitlbee -m 1g -v /home/persistence/bitlbee/data:/var/lib/bitlbee kalbasit/bitlbee
+ExecStart=/usr/bin/docker start -a bitlbee
+ExecStop=/usr/bin/docker stop bitlbee
+ExecStopPost=/usr/bin/docker rm -f bitlbee
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
