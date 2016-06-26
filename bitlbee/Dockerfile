@@ -1,10 +1,10 @@
 FROM base/devel:minimal
 MAINTAINER Jack Meredith <jackusm95@gmail.com>
 
-RUN pacman -Sy archlinux-keyring
+RUN pacman -Sy archlinux-keyring --noconfirm
 RUN mkdir -p /tmp/pacaur_install && \
   cd /tmp/pacaur_install && \
-  pacman -S expac yajl git --noconfirm && \
+  pacman -Syu expac yajl git --noconfirm && \
   curl -o PKGBUILD https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=cower && \
   makepkg PKGBUILD --skippgpcheck && \
   pacman -U cower*.tar.xz --noconfirm && \
