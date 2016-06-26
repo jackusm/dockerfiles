@@ -10,6 +10,7 @@ ONBUILD RUN pacman-key --populate && \
   pacman -S --force openssl --noconfirm && \
   pacman -S pacman --noprogressbar --noconfirm && \
   pacman-db-upgrade && \
+  pacman -S archlinux-keyring && \
   pacman -Syyu --noprogressbar --noconfirm && \
   mkdir -p /tmp/pacaur_install && \
   cd /tmp/pacaur_install && \
