@@ -12,6 +12,7 @@ RUN mkdir -p /tmp/pacaur_install && \
   makepkg PKGBUILD && \
   pacman -U pacaur*.tar.xz --noconfirm && \
   rm -r /tmp/pacaur_install
-RUN pacaur -S bitlbee bitlbee-otr bitlbee-libpurple bitlbee-facebook bitlbee-steam bitlbee-discord-git
+RUN pacaur -S bitlbee bitlbee-otr bitlbee-libpurple bitlbee-facebook bitlbee-steam bitlbee-discord-git --noconfirm
 COPY bitlbee.conf /etc/bitlbee/bitlbee.conf
 RUN chown -R bitlbee:bitlbee /var/lib/bitlbee
+CMD ["bitlbee"]
