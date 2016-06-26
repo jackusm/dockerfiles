@@ -6,11 +6,11 @@ RUN curl -o /etc/pacman.d/mirrorlist "https://www.archlinux.org/mirrorlist/?coun
 
 ONBUILD RUN pacman-key --populate && \
   pacman-key --refresh-keys && \
+  pacman -Sy archlinux-keyring && \
   pacman -Sy --noprogressbar --noconfirm && \
   pacman -S --force openssl --noconfirm && \
   pacman -S pacman --noprogressbar --noconfirm && \
   pacman-db-upgrade && \
-  pacman -S archlinux-keyring && \
   pacman -Syyu --noprogressbar --noconfirm && \
   mkdir -p /tmp/pacaur_install && \
   cd /tmp/pacaur_install && \
