@@ -1,10 +1,5 @@
-# Run steam in a container
-#
-# docker run -d --name=steam -v /tmp/.X11-unix:/tmp/.X11-unix -v /dev/shm:/dev/shm -v /run/user/1000/pulse:/run/user/1000/pulse -v /etc/machine-id:/etc/machine-id -v $HOME/Downloads:/tmp/Downloads -v $HOME/.local/share/Steam:/home/steam/.local/share/Steam -e DISPLAY=unix$DISPLAY steam
-#
-FROM tianon/steamos
+FROM tianon/steam
 MAINTAINER Jack Meredith <jackusm95@gmail.com>
-RUN apt-get update && apt-get install -y steam-launcher zenity && rm -rf /var/lib/apt/lists/*
 
 # add the sources.list stuff that steam will at first start
 RUN echo 'deb [arch=amd64,i386] http://repo.steampowered.com/steam precise steam' > /etc/apt/sources.list.d/steam.list && \
@@ -17,15 +12,3 @@ RUN apt-get update && \
 		libgl1-mesa-dri:i386 \
 		libgl1-mesa-glx:i386 \
 		fglrx-driver
-
-# steam itself needs to be able to install things, and it uses "sudo" for that
-RUN apt-get install -yq sudo
-RUN echo 'steam ALL = NOPASSWD: ALL' > /etc/sudoers.d/steam && chmod 0440 /etc/sudoers.d/steam
-
-RUN adduser --disabled-password --gecos 'Steam' steam && \
-	adduser steam video
-USER steam
-ENV HOME /home/steam
-VOLUME /home/steam
-
-CMD ["steam"]
