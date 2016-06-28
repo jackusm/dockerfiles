@@ -23,6 +23,6 @@ RUN sudo chmod +x /tmp/TeamSpeak3-Client-linux_amd64-${TS_VERSION}.run
 RUN yes | sudo /tmp/TeamSpeak3-Client-linux_amd64-${TS_VERSION}.run && \
 		sudo rm -f /tmp/*
 COPY entrypoint.sh /sbin/entrypoint.sh
-RUN chmod 755 /sbin/entrypoint.sh
+RUN sudo chmod 755 /sbin/entrypoint.sh
 
 ENTRYPOINT ["/sbin/entrypoint.sh"]
