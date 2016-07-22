@@ -1,35 +1,29 @@
-# BitlBee docker image
+docker-bitlbee
+==============
 
-## Description
+This repo provides the steps necessary to build a
+[BitlBee](http://www.bitlbee.org/) docker image.
 
+This bitlbee includes [bitlbee-facebook](https://wiki.bitlbee.org/HowtoFacebookMQTT)
 
-BitlBee brings IM (instant messaging) to IRC clients. It's a great solution for
-people who have an IRC client running all the time and don't want to run an
-additional MSN/AIM/whatever client.
+Docker registry
+---------------
 
-This image allows you to run BitlBee in a completelly containerized environment
+This image is available at: [hub.docker.com/r/dennismp/bitlbee/](https://hub.docker.com/r/dennismp/bitlbee/)
 
-## How to use this image
+Build manually
+--------------
 
-Run BitlBee listening in port 6667 with default config
 ```
-docker run \
-  -p 6667:6667 \
-  jackus/bitlbee -n
-```
-
-Use a specific config directory
-```
-docker run \
-  -p 6667:6667 \
-  -v $(pwd)/bitlbee:/etc/bitlbee:ro \
-  jackus/bitlbee -n
+$ git clone https://github.com/dennis/docker-bitlbee
+$ docker build --rm -t dennismp/bitlbee .
 ```
 
-Store all data into a parent host's directory
+Running
+-------
+
+It exposes port 6667 and use volume /var/lib/bitlbee for configuration files.
+
 ```
-docker run \
-  -p 6667:6667 \
-  -v /tmp/bitlbee:/var/lib/bitlbee:rw \
-  jackus/bitlbee -n
+$ docker run -d --name=bitlbee -v /var/volumes/bitlbee:/var/lib/bitlbee/ dennismp/bitlbee
 ```

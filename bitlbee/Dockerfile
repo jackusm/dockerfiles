@@ -1,16 +1,15 @@
-FROM alpine
-MAINTAINER Jack Meredith <jackusm95@gmail.com>
-
-RUN apk add --update-cache bitlbee bitlbee-otr \
-  && rm -rf /var/cache/apk/*
-
-RUN addgroup bitlbee && \
-  adduser -D -H -h /var/lib/bitlbee -s /bin/sh -G bitlbee bitlbee
-
-COPY entrypoint.sh /sbin/entrypoint
-COPY bitlbee.conf /etc/bitlbee/bitlbee.conf
-VOLUME /var/lib/bitlbee
+FROM debian:jessie
+MAINTAINER dennis@moellegaard.dk
 
 EXPOSE 6667
-ENTRYPOINT ["/sbin/entrypoint"]
-CMD ["bitlbee", "-n"]
+VOLUME ["/var/lib/bitlbee/"]
+
+COPY build.sh bitlbee.key jgeboski.key build/
+
+ENV LANG en_US.UTF-8
+ENV LC_ALL C.UTF-8
+ENV LANGUAGE en_US.UTF-8
+
+RUN /build/build.sh && rm -r /build
+
+CMD ["/usr/sbin/bitlbee", "-D", "-n"]
