@@ -11,7 +11,7 @@ RUN apk --no-cache add \
 	ca-certificates \
 	elinks \
 	git \
-	gnupg1 \
+	gnupg \
 	lynx \
 	mutt \
 	mutt-doc \
