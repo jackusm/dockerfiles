@@ -20,6 +20,11 @@ RUN apk --no-cache add \
 # a browser is necessary!
 ENV BROWSER lynx
 
+ENV MUTT_VERSION 1.6.2
+
+RUN apk --no-cache update && \
+	apk upgrade
+
 USER user
 ENV HOME /home/user
 ENV TERM xterm-256color
@@ -30,6 +35,5 @@ RUN git clone https://github.com/jfrazelle/.vim.git $HOME/.vim \
 	&& cp $HOME/.vim/vimrc $HOME/.vimrc
 
 ENV LANG C.UTF-8
-
 
 CMD ["mutt", "-F", "~/.mutt/muttrc"]
