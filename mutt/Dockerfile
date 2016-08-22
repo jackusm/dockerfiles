@@ -12,6 +12,7 @@ RUN apk --no-cache add \
 	elinks \
 	git \
 	gnupg \
+	gpgme \
 	lynx \
 	mutt \
 	mutt-doc \
