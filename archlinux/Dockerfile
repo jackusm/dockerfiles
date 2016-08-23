@@ -5,8 +5,8 @@ RUN curl -o /etc/pacman.d/mirrorlist "https://www.archlinux.org/mirrorlist/?coun
   sed -i 's/^#//' /etc/pacman.d/mirrorlist
 
 ONBUILD RUN pacman-key --populate && \
-  pacman-key --refresh-keys --noconfirm && \
-  pacman -Sy archlinux-keyring && \
+  pacman-key --refresh-keys && \
+  pacman -Sy archlinux-keyring --noconfirm && \
   pacman -Sy --noprogressbar --noconfirm && \
   pacman -S --force openssl --noconfirm && \
   pacman -S pacman --noprogressbar --noconfirm && \
