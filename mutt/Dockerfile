@@ -21,10 +21,10 @@ RUN apk --no-cache add \
 # a browser is necessary!
 ENV BROWSER lynx
 
-ENV MUTT_VERSION 1.6.2
+ENV MUTT_VERSION 1.7.0
 
 RUN apk --no-cache update && \
-	apk upgrade
+	apk --no-cache upgrade
 
 USER user
 ENV HOME /home/user
