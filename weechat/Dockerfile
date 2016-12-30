@@ -3,7 +3,9 @@ MAINTAINER Jack Meredith <jackusm95@gmail.com>
 
 RUN apk-install weechat ruby python python-dev py-pip build-base && \
     mkdir /data && \
+    pip install --upgrade pip && \
     pip install python-potr && \
+    pip install notify2 && \
     apk del python-dev py-pip build-base
 
 ENV LANG C.UTF-8
