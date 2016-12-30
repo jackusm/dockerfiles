@@ -1,7 +1,7 @@
 FROM gliderlabs/alpine:3.2
 MAINTAINER Jack Meredith <jackusm95@gmail.com>
 
-RUN apk-install weechat ruby python python-dev py-pip build-base && \
+RUN apk-install weechat ruby python python-dev py-pip build-base python-dbus && \
     mkdir /data && \
     pip install --upgrade pip && \
     pip install python-potr && \
