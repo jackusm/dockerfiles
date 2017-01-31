@@ -25,10 +25,13 @@ RUN cd /ansible && ansible-playbook tileset-phoebus.yml --connection=local
 #RUN cd /ansible && ansible-playbook novnc.yml --connection=local
 
 # 2D mode using XPRA
-#RUN cd /ansible && ansible-playbook xpra.yml --connection=local
+RUN cd /ansible && ansible-playbook xpra.yml --connection=local
 
 # TEXT mode (in the console)
-RUN cd /ansible && ansible-playbook textmode.yml --connection=local
+#RUN cd /ansible && ansible-playbook textmode.yml --connection=local
+
+# GITWATCH git commit on every save
+RUN cd /ansible && ansible-playbook gitwatch.yml --connection=local
 
 # Add scripts
 ADD https://github.com/bencawkwell/supervisor-tools/raw/master/wait-for-daemons.sh /wait-for-daemons.sh
