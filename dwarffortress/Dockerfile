@@ -22,13 +22,13 @@ RUN cd /ansible && ansible-playbook tileset-phoebus.yml --connection=local
 # Only pick ONE of the following display options:
 
 # 2D mode using noVNC (control via a browser)
-RUN cd /ansible && ansible-playbook novnc.yml --connection=local
+#RUN cd /ansible && ansible-playbook novnc.yml --connection=local
 
 # 2D mode using XPRA
 #RUN cd /ansible && ansible-playbook xpra.yml --connection=local
 
 # TEXT mode (in the console)
-#RUN cd /ansible && ansible-playbook textmode.yml --connection=local
+RUN cd /ansible && ansible-playbook textmode.yml --connection=local
 
 # Add scripts
 ADD https://github.com/bencawkwell/supervisor-tools/raw/master/wait-for-daemons.sh /wait-for-daemons.sh
