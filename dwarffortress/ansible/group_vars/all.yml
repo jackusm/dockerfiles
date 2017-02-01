@@ -1,8 +1,8 @@
 # Version of Dwarf Fortress
-df_version: "40_24"
+df_version: "43_05"
 
 # Version of dfhack
-dfhack_version: "0.40.24-r3"
+dfhack_version: "0.43.05-alpha4"
 
 # Which X display to use
 x_display: ":100"
