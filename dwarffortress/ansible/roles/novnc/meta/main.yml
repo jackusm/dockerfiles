@@ -1,3 +1,0 @@
----
-dependencies:
-  - { role: x-display, display: "{{ x_display }}" }

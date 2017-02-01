@@ -7,7 +7,8 @@ RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y $DFPKGS
 
 # Add the ansible playbooks from github
-COPY ./ansible /ansible
+ADD https://github.com/jackusm/ansible-dwarffortress/archive/0.43.05-alpha4.zip /ansible.zip
+RUN unzip /ansible.zip && mv /ansible-dwarffortress-0.43.05-alpha4 /ansible
 
 # Run each playbook
 RUN cd /ansible && ansible-playbook dwarffortress.yml --connection=local
