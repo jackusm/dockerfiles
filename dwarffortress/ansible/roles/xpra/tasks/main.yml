@@ -1,0 +1,53 @@
+---
+- name: Add winswitch apt key
+  sudo: yes
+  apt_key: url=http://winswitch.org/gpg.asc state=present
+  tags: install
+
+- name: Add winswitch apt repo
+  sudo: yes
+  apt_repository: repo='deb http://winswitch.org/ trusty main'
+                  state=present
+  tags: install
+
+- name: create /var/run/sshd directory
+  file: path=/var/run/sshd
+        state=directory
+        mode=0755
+  tags:
+    - install
+
+- name: Install XPRA
+  sudo: yes
+  apt: pkg={{ item }}
+       state=latest
+       update_cache=yes
+       cache_valid_time=3600
+       install_recommends=no
+  with_items:
+    - ssh
+    - xpra
+  tags: install
+
+- name: Set password on df user
+  sudo: yes
+  shell: echo 'df:changeme' |chpasswd
+  tags: install
+
+- name: Set PRINT_MODE to 2D in df configuration
+  lineinfile: dest=/df_linux/data/init/init.txt
+              regexp='^\[PRINT_MODE\:(.*)$'
+              line=[PRINT_MODE:2D]
+              state=present
+              backrefs=yes
+  tags: configure
+
+- name: Set WINDOWED to YES in df configuration
+  lineinfile: dest=/df_linux/data/init/init.txt
+              regexp='^\[WINDOWED\:(.*)$'
+              line=[WINDOWED:YES]
+              state=present
+              backrefs=yes
+  tags: configure
+
+- include: supervisor.yml

@@ -1,0 +1,46 @@
+---
+- name: Install stonesense dependancies
+  sudo: yes
+  apt: pkg={{ item }}
+       state=latest
+       update_cache=yes
+       cache_valid_time=3600
+  with_items:
+    - libjpeg62:i386
+    - libsm6:i386
+  tags: install
+
+- name: Fetch DFHack
+  get_url: url=https://github.com/DFHack/dfhack/releases/download/{{dfhack_version}}/dfhack-{{dfhack_version}}-Linux-gcc-4.5.tar.bz2
+           dest=/dfhack.tar.bz2
+  tags: install
+
+- name: Decompress DFHack
+  unarchive: src=/dfhack.tar.bz2 dest=/df_linux copy=no
+  tags:
+    - install
+    - reset
+
+- name: Set dfhack in /etc/dwarffortress.conf
+  lineinfile: dest=/etc/dwarffortress.conf
+              regexp='^df_launcher(.*)$'
+              line='df_launcher=dfhack'
+              state=present
+  tags:
+    - reset
+    - configure
+
+- name: Copy dfhack.init-example to dfhack.init
+  command: cp /df_linux/dfhack.init-example /df_linux/dfhack.init
+  tags:
+    - reset
+    - configure
+
+- name: Change permissions of /df_linux to be owned by df user
+  file: path=/df_linux
+        recurse=yes
+        owner=df
+        group=df
+  tags:
+    - install
+    - reset

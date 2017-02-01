@@ -1,0 +1,4 @@
+[program:xdummy]
+command=Xorg +extension GLX +extension RANDR +extension RENDER -logfile /tmp/1.log -config /xorg.conf {{ x_display }}
+user=df
+environment=DISPLAY={{ x_display }}

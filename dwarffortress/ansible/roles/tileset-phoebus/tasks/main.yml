@@ -1,0 +1,100 @@
+---
+- name: Fetch Tile Set Phoebus
+  get_url: url=http://dffd.bay12games.com/download.php?id=2430&f=Phoebus_40_24v00.zip
+           dest=/phoebus.zip
+  tags: install
+
+- name: create phoebus directory
+  file: path=/phoebus
+        state=directory
+        mode=0755
+  tags:
+    - install
+    - reset
+
+- name: Decompress Tile Set Phoebus
+  unarchive: src=/phoebus.zip dest=/phoebus copy=no
+  tags:
+    - install
+    - reset
+
+- name: Copy over phoebus raw
+  command: cp -ar /phoebus/raw /df_linux/
+  tags:
+    - reset
+    - configure
+
+- name: Copy phoebus art to data/
+  command: cp -ar /phoebus/data/art /df_linux/data/
+  tags:
+    - reset
+    - configure
+
+- name: Copy phoebus colors.txt to data/init/
+  command: cp -ar /phoebus/data/init/phoebus/colors.txt /df_linux/data/init/colors.txt
+  tags:
+    - reset
+    - configure
+
+- name: Copy phoebus d_init.txt to data/init/
+  command: cp -ar /phoebus/data/init/phoebus/d_init.txt /df_linux/data/init/d_init.txt
+  tags:
+    - reset
+    - configure
+
+- name: Set init.txt FONT to phoebus
+  lineinfile: dest=/df_linux/data/init/init.txt
+              regexp='^\[FONT\:(.*)$'
+              line=[FONT:Phoebus_16x16.png]
+              state=present
+              backrefs=yes
+  tags: configure
+
+- name: Set init.txt FULLFONT to phoebus
+  lineinfile: dest=/df_linux/data/init/init.txt
+              regexp='^\[FULLFONT\:(.*)$'
+              line=[FULLFONT:Phoebus_16x16.png]
+              state=present
+              backrefs=yes
+  tags: configure
+
+- name: Set init.txt GRAPHICS to YES
+  lineinfile: dest=/df_linux/data/init/init.txt
+              regexp='^\[GRAPHICS\:(.*)$'
+              line=[GRAPHICS:YES]
+              state=present
+              backrefs=yes
+  tags: configure
+
+- name: Set init.txt GRAPHICS_FONT to phoebus
+  lineinfile: dest=/df_linux/data/init/init.txt
+              regexp='^\[GRAPHICS_FONT\:(.*)$'
+              line=[GRAPHICS_FONT:Phoebus_16x16.png]
+              state=present
+              backrefs=yes
+  tags: configure
+
+- name: Set init.txt GRAPHICS_FULLFONT to phoebus
+  lineinfile: dest=/df_linux/data/init/init.txt
+              regexp='^\[GRAPHICS_FULLFONT\:(.*)$'
+              line=[GRAPHICS_FULLFONT:Phoebus_16x16.png]
+              state=present
+              backrefs=yes
+  tags: configure
+
+- name: Set init.txt TRUETYPE to YES
+  lineinfile: dest=/df_linux/data/init/init.txt
+              regexp='^\[TRUETYPE\:(.*)$'
+              line=[TRUETYPE:YES]
+              state=present
+              backrefs=yes
+  tags: configure
+
+- name: Change permissions of /df_linux to be owned by df user
+  file: path=/df_linux
+        recurse=yes
+        owner=df
+        group=df
+  tags:
+    - install
+    - reset

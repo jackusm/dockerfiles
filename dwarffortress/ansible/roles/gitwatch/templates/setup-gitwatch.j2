@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Enable auto backups using gitwatch if the save directory is a git repo
+if [ -d "/df_linux/data/save/.git" ] ; then
+    grep -q 'current' /df_linux/data/save/.gitignore || echo 'current' >> /df_linux/data/save/.gitignore
+    grep -q '*/raw' /df_linux/data/save/.gitignore || echo '*/raw' >> /df_linux/data/save/.gitignore
+    /gitwatch.sh -s 60 /df_linux/data/save
+else
+    echo "/df_linux/data/save is not a git directory so doing nothing"
+    while true; do
+        sleep 1000
+    done
+fi

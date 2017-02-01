@@ -1,0 +1,8 @@
+---
+- name: Set PRINT_MODE to TEXT in df configuration
+  lineinfile: dest=/df_linux/data/init/init.txt
+              regexp='^\[PRINT_MODE\:(.*)$'
+              line=[PRINT_MODE:TEXT]
+              state=present
+              backrefs=yes
+  tags: configure

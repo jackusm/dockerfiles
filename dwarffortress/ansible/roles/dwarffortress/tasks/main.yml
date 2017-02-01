@@ -1,0 +1,50 @@
+---
+- name: Fetch DF
+  get_url: url=http://www.bay12games.com/dwarves/df_{{df_version}}_linux.tar.bz2 dest=/df_linux.tar.bz2
+  tags: install
+
+- name: Decompress DF
+  unarchive: src=/df_linux.tar.bz2 dest=/ copy=no
+  tags:
+    - install
+    - reset
+
+- name: Add dwarffortress launcher
+  get_url: url=https://raw.githubusercontent.com/bencawkwell/launch_df/v0.3.1/dwarffortress
+           dest=/bin/dwarffortress
+           mode=0755
+  tags:
+    - install
+    - reset
+
+- name: Add empty dwarffortress.conf to /etc
+  file: dest=/etc/dwarffortress.conf
+        state=touch
+  tags:
+    - install
+    - reset
+
+- name: Fix sound (libopenal.so)
+  file: src=/usr/lib/i386-linux-gnu/libopenal.so.1
+        dest=/df_linux/libs/libopenal.so
+        state=link
+  tags:
+    - install
+    - reset
+
+- name: Fix sound (libsndfile.so)
+  file: src=/usr/lib/i386-linux-gnu/libsndfile.so.1
+        dest=/df_linux/libs/libsndfile.so
+        state=link
+  tags:
+    - install
+    - reset
+
+- name: Change permissions of /df_linux to be owned by df user
+  file: path=/df_linux
+        recurse=yes
+        owner=df
+        group=df
+  tags:
+    - install
+    - reset

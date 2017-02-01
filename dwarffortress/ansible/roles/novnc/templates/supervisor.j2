@@ -1,0 +1,9 @@
+[program:x11vnc]
+command=x11vnc -forever -display {{ x_display }} -nopw -listen localhost -xkb -ncache 10
+user=df
+environment=DISPLAY={{ x_display }}
+
+[program:noVNC]
+command=/noVNC/utils/launch.sh --vnc localhost:5900
+user=df
+environment=DISPLAY={{ x_display }}

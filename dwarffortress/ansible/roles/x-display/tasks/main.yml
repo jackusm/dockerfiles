@@ -1,0 +1,8 @@
+---
+- name: Set the DISPLAY environment variable for the df user
+  lineinfile: dest=/home/df/.bashrc
+              regexp='^export DISPLAY='
+              line='export DISPLAY={{ display }}'
+              state=present
+              create=yes
+  tags: configure
