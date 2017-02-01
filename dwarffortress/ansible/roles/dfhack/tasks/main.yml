@@ -8,6 +8,9 @@
   with_items:
     - libjpeg62:i386
     - libsm6:i386
+    - libsdl1.2debian
+    - libsdl-image1.2
+    - libSDL-ttf2.0-0
   tags: install
 
 - name: Fetch DFHack
