@@ -1,0 +1,3 @@
+[submodule "dwarffortress"]
+	path = dwarffortress
+	url = https://github.com/bencawkwell/dockerfile-dwarffortress.git
