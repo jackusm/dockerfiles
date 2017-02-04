@@ -21,7 +21,7 @@ RUN apk --no-cache add \
 # a browser is necessary!
 ENV BROWSER lynx
 
-ENV MUTT_VERSION 1.7.0
+ENV MUTT_VERSION 1.7.2
 
 RUN apk --no-cache update && \
 	apk --no-cache upgrade
