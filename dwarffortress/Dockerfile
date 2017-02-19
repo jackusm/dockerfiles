@@ -15,7 +15,7 @@ RUN ln -s /ansible-dwarffortress-* /ansible
 RUN cd /ansible && ansible-playbook dfhack.yml --connection=local
 
 # Uncomment the line below if you want to use the tile set
-#RUN cd /ansible && ansible-playbook tileset-GemSet.yml --connection=local
+RUN cd /ansible && ansible-playbook tileset-GemSet.yml --connection=local
 
 # Only pick ONE of the following display options:
 
