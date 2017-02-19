@@ -25,6 +25,9 @@ RUN cd /ansible && ansible-playbook novnc.yml --connection=local
 # TEXT mode (in the console)
 #RUN cd /ansible && ansible-playbook textmode.yml --connection=local
 
+# gitwatch
+RUN cd /ansible && ansible-playbook gitwatch.yml --connection=local
+
 # Uncomment the line below if you want to use the tile set
 RUN cd /ansible && ansible-playbook tileset-GemSet.yml --connection=local
 
