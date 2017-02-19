@@ -16,6 +16,9 @@ RUN cd /ansible && ansible-playbook dfhack.yml --connection=local
 
 # Only pick ONE of the following display options:
 
+# gitwatch
+RUN cd /ansible && ansible-playbook gitwatch.yml --connection=local
+
 # 2D mode using noVNC (control via a browser)
 RUN cd /ansible && ansible-playbook novnc.yml --connection=local
 
@@ -24,9 +27,6 @@ RUN cd /ansible && ansible-playbook novnc.yml --connection=local
 
 # TEXT mode (in the console)
 #RUN cd /ansible && ansible-playbook textmode.yml --connection=local
-
-# gitwatch
-RUN cd /ansible && ansible-playbook gitwatch.yml --connection=local
 
 # Uncomment the line below if you want to use the tile set
 RUN cd /ansible && ansible-playbook tileset-GemSet.yml --connection=local
