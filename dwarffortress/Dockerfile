@@ -14,9 +14,6 @@ RUN ln -s /ansible-dwarffortress-* /ansible
 # Comment the line below if you do not want dfhack
 RUN cd /ansible && ansible-playbook dfhack.yml --connection=local
 
-# Uncomment the line below if you want to use the tile set
-RUN cd /ansible && ansible-playbook tileset-GemSet.yml --connection=local
-
 # Only pick ONE of the following display options:
 
 # 2D mode using noVNC (control via a browser)
@@ -27,6 +24,9 @@ RUN cd /ansible && ansible-playbook novnc.yml --connection=local
 
 # TEXT mode (in the console)
 #RUN cd /ansible && ansible-playbook textmode.yml --connection=local
+
+# Uncomment the line below if you want to use the tile set
+RUN cd /ansible && ansible-playbook tileset-GemSet.yml --connection=local
 
 # Add scripts
 ADD https://github.com/bencawkwell/supervisor-tools/raw/master/wait-for-daemons.sh /wait-for-daemons.sh
