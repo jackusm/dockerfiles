@@ -20,10 +20,10 @@ RUN cd /ansible && ansible-playbook dfhack.yml --connection=local
 RUN cd /ansible && ansible-playbook gitwatch.yml --connection=local
 
 # 2D mode using noVNC (control via a browser)
-RUN cd /ansible && ansible-playbook novnc.yml --connection=local
+#RUN cd /ansible && ansible-playbook novnc.yml --connection=local
 
 # 2D mode using XPRA
-#RUN cd /ansible && ansible-playbook xpra.yml --connection=local
+RUN cd /ansible && ansible-playbook xpra.yml --connection=local
 
 # TEXT mode (in the console)
 #RUN cd /ansible && ansible-playbook textmode.yml --connection=local
