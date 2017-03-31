@@ -38,4 +38,4 @@ RUN mkdir -p /tmp/pacaur_install && \
 RUN sudo pacman -S vim --noconfirm
 RUN mkdir -p /home/user/.config/pacaur && \
     echo 'editor=vim' > /home/user/.config/pacaur/config
-ONBUILD RUN pacaur -Syu
+ONBUILD RUN pacaur -Syu --noconfirm --noedit
