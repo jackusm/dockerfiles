@@ -1,4 +1,4 @@
-FROM gliderlabs/alpine:3.2
+FROM gliderlabs/alpine:latest
 MAINTAINER Jack Meredith <jackusm95@gmail.com>
 
 RUN apk-install weechat ruby python python-dev py-pip build-base py-dbus && \
