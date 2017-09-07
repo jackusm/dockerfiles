@@ -1,8 +1,7 @@
 FROM anapsix/alpine-java:latest
 MAINTAINER Jack Meredith <jackusm95@gmail.com>
 
-ENV RIPME_VERSION 1.2.13
 RUN mkdir rips && \
-    wget http://rarchives.com/ripme.jar && \
+    wget https://github.com/RipMeApp/ripme/releases/download/1.5.7/ripme.jar && \
     chmod +x ripme.jar
 CMD ["--help"]
