@@ -24,18 +24,12 @@ RUN /usr/sbin/groupadd --system sudo && \
     /usr/sbin/useradd -m --groups sudo user
 USER user
 
-# install pacaur
-RUN mkdir -p /tmp/pacaur_install && \
-  cd /tmp/pacaur_install && \
-  sudo pacman -S expac yajl git --noconfirm && \
-  curl -o PKGBUILD https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=cower && \
-  makepkg PKGBUILD --skippgpcheck && \
-  sudo pacman -U cower*.tar.xz --noconfirm && \
-  curl -o PKGBUILD https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=pacaur && \
-  makepkg PKGBUILD && \
-  sudo pacman -U pacaur*.tar.xz --noconfirm && \
-  rm -r /tmp/pacaur_install
+# install yay
+RUN git clone https://aur.archlinux.org/yay.git /tmp/yay_install && \
+  cd /tmp/yay_install && \
+  makepkg -si && \
+  rm -r /tmp/yay_install
 RUN sudo pacman -S vim --noconfirm
 RUN mkdir -p /home/user/.config/pacaur && \
     echo 'editor=vim' > /home/user/.config/pacaur/config
-ONBUILD RUN pacaur -Syu --noconfirm --noedit
+ONBUILD RUN yay -Syu --noconfirm --noedit
