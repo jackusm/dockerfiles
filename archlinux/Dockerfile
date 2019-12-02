@@ -1,4 +1,4 @@
-FROM base/archlinux
+FROM archlinux/base
 MAINTAINER Jack Meredith <jackusm95@gmail.com>
 
 # Workaround for wrong permissions in base image
